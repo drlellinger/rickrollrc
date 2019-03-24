@@ -1,11 +1,11 @@
 #!/bin/bash
 # Rick Astley in your Terminal.
-# By Serene Han and Justine Tunney <3
+# By Serene Han and Justine Tunney <3 edited by DrLellinger
 version='1.1'
+
 rick='http://keroserene.net/lol'
 video="$rick/astley80.full.bz2"
-# TODO: I'll let someone with mac or windows machine send a pull request
-# to get gsm going again :)
+
 audio_gsm="$rick/roll.gsm"
 audio_raw="$rick/roll.s16"
 audpid=0
@@ -56,7 +56,7 @@ obtainium() {
 }
 echo -en "\x1b[?25l \x1b[2J \x1b[H"  # Hide cursor, clear screen.
 
-#echo -e "${yell}Fetching audio..."
+
 if has? afplay; then
   # On Mac OS, if |afplay| available, pre-fetch compressed audio.
   [ -f /tmp/roll.s16 ] || obtainium $audio_raw >/tmp/roll.s16
@@ -71,9 +71,6 @@ elif has? play; then
 fi
 audpid=$!
 
-#echo -e "${yell}Fetching video..."
-# Sync FPS to reality as best as possible. Mac's freebsd version of date cannot
-# has nanoseconds so inject python. :/
 python <(cat <<EOF
 import sys
 import time
